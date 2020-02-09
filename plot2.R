@@ -1,0 +1,11 @@
+dados <- read.table("household_power_consumption.txt",header = FALSE,sep = ";",skip = 66637,nrows = 2880, col.names = c("Date", "Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))  ##read the data base
+
+
+DateTime <- paste(as.Date(dados$Date, format = "%d/%m/%Y"), dados$Time)
+DateTime <- strptime(DateTime, "%Y-%m-%d %H:%M:%S")
+
+png("plot2.png", width = 480 , height = 480)
+
+plot(DateTime,dados$Global_active_power, type = "l", ylab = "Global Active Power (killowatts)", xlab = "")
+
+dev.off()
